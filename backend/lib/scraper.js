@@ -24,13 +24,15 @@ export async function getTwitterFollowers(html) {
 }
 
 export async function getInstagramCount() {
-  const html = await getHTML('https://www.instagram.com/thundets/')
+  // const html = await getHTML('https://www.instagram.com/thundets/')
+  const html = await getHTML('https://www.instagram.com/jimmyfallon/')
   const count = await getInstagramFollowers(html)
   return count
 }
 
 export async function getTwitterCount() {
-  const html = await getHTML('https://twitter.com/thundets')
+  // const html = await getHTML('https://twitter.com/thundets')
+  const html = await getHTML('https://twitter.com/jimmyfallon')
   const count = await getTwitterFollowers(html)
   return count
 }
