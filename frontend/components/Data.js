@@ -1,19 +1,20 @@
 import { useContext } from 'react'
 import { ScrapeContext } from './ScrapeContext'
-import { distanceInWords } from 'date-fns'
+import Chart from './Chart'
+import Table from './Table'
 
 export default function Data() {
-  const { scrapes } = useContext(ScrapeContext)
+  const { scrapes, fetchScrapes } = useContext(ScrapeContext)
   return (
     <div>
-      <h2>Twitter:</h2>
-      <ul>
-        {scrapes.twitter.map(scrape => (
-          <li key={scrape.date}>
-            {scrape.count} - {distanceInWords(scrape.date, new Date())}
-          </li>
-        ))}
-      </ul>
+      <button onClick={fetchScrapes}>Refresh data</button>
+      <Chart data={scrapes.instagram} />
+
+      <h2>Twitter</h2>
+      <Table scrapes={scrapes.twitter} />
+
+      <h2>Instagram</h2>
+      <Table scrapes={scrapes.instagram} />
     </div>
   )
 }

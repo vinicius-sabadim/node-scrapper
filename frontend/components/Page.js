@@ -6,20 +6,23 @@ function useScrapes() {
     instagram: [],
     twitter: []
   })
+
+  async function fetchScrapes() {
+    const res = await fetch('http://localhost:4321/data')
+    const data = await res.json()
+    setScrapes(data)
+  }
+
   useEffect(function() {
-    ;(async () => {
-      const res = await fetch('http://localhost:4321/data')
-      const data = await res.json()
-      setScrapes(data)
-    })()
+    fetchScrapes()
   }, [])
-  return scrapes
+  return { scrapes, fetchScrapes }
 }
 
 export default function Page({ children }) {
-  const scrapes = useScrapes()
+  const hookData = useScrapes()
   return (
-    <ScrapeProvider value={{ scrapes }}>
+    <ScrapeProvider value={hookData}>
       <div className="page">{children}</div>
     </ScrapeProvider>
   )
